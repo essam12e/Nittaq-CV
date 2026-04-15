@@ -55,8 +55,7 @@
   <dialog class="portfolio-modal" id="portfolioModal"><div class="modal-head"><div><p class="label-text">معرض الأعمال</p><h3 id="modalTitle">الصور</h3></div><button class="icon-btn" id="closeModalBtn" type="button" aria-label="إغلاق">×</button></div><div class="modal-grid" id="modalGrid"></div></dialog>
   <template id="portfolioItemTemplate"><article class="portfolio-item glass"><div class="thumb-wrap"><img class="item-thumb" alt=""></div><div class="item-copy"><strong class="item-title"></strong><p class="item-description"></p><a class="item-link" target="_blank" rel="noreferrer">فتح العنصر</a></div></article></template>
   <script src="app.js"></script>
-</body>
-  <script type="module">
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -65,6 +64,7 @@
     getFirestore
   };
 </script>
+</body>
 </html>
 
 
