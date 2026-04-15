@@ -220,3 +220,8 @@ html[data-theme="light"] .preview-card {
   color: var(--muted);
   word-break: break-word;
 }
+body.view-only #openAdminBtn,
+body.view-only #adminPanel,
+body.view-only #adminOverlay {
+  display: none !important;
+}
