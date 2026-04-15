@@ -531,7 +531,22 @@ async function initSharedView() {
   }
 }
 async function initApp() {
-  if (isSharedView) document.body.classList.add("view-only");
+  if (isSharedView) {
+    document.body.classList.add("view-only");
+
+    if (els.openAdminBtn) {
+      els.openAdminBtn.style.display = "none";
+    }
+
+    if (els.adminPanel) {
+      els.adminPanel.style.display = "none";
+    }
+
+    if (els.adminOverlay) {
+      els.adminOverlay.style.display = "none";
+    }
+  }
+
   applyTheme();
   await initSharedView();
   renderAll();
