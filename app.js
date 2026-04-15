@@ -438,3 +438,34 @@ async function initApp() {
 }
 initApp();
 
+
+
+    async function handleWebsiteSubmit(e){
+      e.preventDefault();
+      const form = e.currentTarget;
+      const title = form.elements.title.value.trim();
+      const description = form.elements.description.value.trim();
+      const url = form.elements.url.value.trim();
+      const file = form.elements.file.files[0];
+      const imageUrl = form.elements.imageUrl.value.trim();
+      let image = '';
+      if(file){ image = await fileToDataUrl(file); }
+      else if(imageUrl){ image = safeLink(imageUrl); }
+      if(!title || !description || !url){
+        showToast('يرجى إضافة عنوان ووصف ورابط الموقع.');
+        return;
+      }
+      if(!state.websites) state.websites = [];
+      state.websites.unshift({ title, description, url: safeLink(url), image });
+      form.reset();
+      renderAll();
+      switchPortfolioTab('websites');
+      showToast('تمت إضافة الموقع بنجاح.');
+    }
+
+    function removeWebsite(index){
+      state.websites.splice(index, 1);
+      renderAll();
+      showToast('تم حذف الموقع.');
+    }
+

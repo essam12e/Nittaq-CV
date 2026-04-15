@@ -184,6 +184,4 @@ img { display: block; max-width: 100%; }
 
 
 
-.profile-image{max-width:420px;width:100%;aspect-ratio:1/1;object-fit:contain;}
-
-body.light .portfolio, .portfolio.light{background:#ffffff !important;}
+.website-card-link{word-break:break-all}
