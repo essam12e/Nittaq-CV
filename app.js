@@ -383,10 +383,10 @@ async function copyShareLink() {
         shareUrl = await createFirebaseShareLink({ state, currentLang, currentTheme, baseUrl });
       } catch (fbError) {
         console.warn("Firebase share failed, using fallback:", fbError);
-        shareUrl = buildFallbackShareUrl(baseUrl);
+        shareUrl = baseUrl;
       }
     } else {
-      shareUrl = buildFallbackShareUrl(baseUrl);
+      shareUrl = baseUrl;
     }
     if (btn) { btn.textContent = originalText; btn.disabled = false; }
     if (navigator.share) {
