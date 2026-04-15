@@ -452,12 +452,31 @@ els.portfolioForm.addEventListener("submit", async event => {
   saveState();
   renderAll();
   els.portfolioForm.reset();
+  if (portfolioTypeSelect) updatePortfolioFormFields(portfolioTypeSelect.value);
 });
 if (els.shareLinkBtn) els.shareLinkBtn.addEventListener("click", copyShareLink);
 const languageToggleBtn = document.getElementById("languageToggleBtn");
 if (languageToggleBtn) languageToggleBtn.addEventListener("click", toggleLanguage);
 if (els.themeToggleBtn) els.themeToggleBtn.addEventListener("click", toggleTheme);
 els.resetDataBtn.addEventListener("click", () => { state = cloneData(defaultData); saveState(); renderAll(); });
+
+// Dynamic portfolio form fields based on type
+function updatePortfolioFormFields(type) {
+  const coverFields = document.querySelectorAll(".pf-cover");
+  const videoFields = document.querySelectorAll(".pf-video");
+  const websiteFields = document.querySelectorAll(".pf-website");
+  coverFields.forEach(el => el.style.display = "grid");
+  videoFields.forEach(el => el.style.display = type === "videos" ? "grid" : "none");
+  websiteFields.forEach(el => el.style.display = type === "websites" ? "grid" : "none");
+}
+const portfolioTypeSelect = document.getElementById("portfolioTypeSelect");
+if (portfolioTypeSelect) {
+  portfolioTypeSelect.addEventListener("change", function() {
+    updatePortfolioFormFields(this.value);
+  });
+  updatePortfolioFormFields(portfolioTypeSelect.value);
+}
+
 document.querySelectorAll(".folder-card").forEach(card => card.addEventListener("click", () => renderModal(card.dataset.folder)));
 els.closeModalBtn.addEventListener("click", closeModal);
 els.portfolioModal.addEventListener("click", event => { const r = els.portfolioModal.getBoundingClientRect(); const inside = r.top <= event.clientY && event.clientY <= r.top + r.height && r.left <= event.clientX && event.clientX <= r.left + r.width; if (!inside) closeModal(); });
