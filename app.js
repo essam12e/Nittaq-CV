@@ -186,7 +186,8 @@ const PROFILE_KEY_MAP_REV = Object.fromEntries(Object.entries(PROFILE_KEY_MAP).m
 const PORTFOLIO_KEY_MAP_REV = Object.fromEntries(Object.entries(PORTFOLIO_KEY_MAP).map(([k, v]) => [v, k]));
 const queryParams = new URLSearchParams(window.location.search);
 const sharePayload = queryParams.get("s") || queryParams.get("share");
-const isSharedView = Boolean(sharePayload);
+const fallbackPayload = queryParams.get("d");
+const isSharedView = Boolean(sharePayload || fallbackPayload);
 const LANG_KEY = "landing-portfolio-lang-v1";
 const THEME_KEY = "landing-portfolio-theme-v1";
 const sharedLang = queryParams.get("l") || queryParams.get("lang");
@@ -252,7 +253,10 @@ function loadState() {
   if (sharePayload) {
     const shared = decodeShareState(sharePayload);
     if (shared) return shared;
-    return cloneData(defaultData);
+  }
+  if (fallbackPayload) {
+    const shared = decodeShareState(fallbackPayload);
+    if (shared) return shared;
   }
   try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return cloneData(defaultData); const parsed = JSON.parse(raw); return { profile: { ...defaultData.profile, ...parsed.profile }, portfolio: Array.isArray(parsed.portfolio) ? parsed.portfolio : cloneData(defaultData.portfolio) }; } catch { return cloneData(defaultData); }
 }
@@ -360,36 +364,49 @@ function closeModal() {
 function encodeShareState() {
   return base64UrlEncode(JSON.stringify(serializeCompactState(state)));
 }
+function buildFallbackShareUrl(baseUrl) {
+  const fallbackUrl = new URL(baseUrl);
+  fallbackUrl.searchParams.set("d", encodeShareState());
+  fallbackUrl.searchParams.set("l", currentLang);
+  fallbackUrl.searchParams.set("t", currentTheme);
+  return fallbackUrl.toString();
+}
 async function copyShareLink() {
   const baseUrl = window.location.origin + window.location.pathname.replace(/index\.html$/i, "");
+  const btn = els.shareLinkBtn;
+  const originalText = btn ? btn.textContent : "";
+  if (btn) { btn.textContent = "⏳ جارٍ الإنشاء..."; btn.disabled = true; }
+  let shareUrl = "";
   try {
-    let shareUrl = baseUrl;
     if (canUseFirebaseShare()) {
-      shareUrl = await createFirebaseShareLink({
-        state,
-        currentLang,
-        currentTheme,
-        baseUrl
-      });
+      try {
+        shareUrl = await createFirebaseShareLink({ state, currentLang, currentTheme, baseUrl });
+      } catch (fbError) {
+        console.warn("Firebase share failed, using fallback:", fbError);
+        shareUrl = buildFallbackShareUrl(baseUrl);
+      }
     } else {
-      const fallbackUrl = new URL(baseUrl);
-      fallbackUrl.searchParams.set("l", currentLang);
-      fallbackUrl.searchParams.set("t", currentTheme);
-      shareUrl = fallbackUrl.toString();
+      shareUrl = buildFallbackShareUrl(baseUrl);
     }
+    if (btn) { btn.textContent = originalText; btn.disabled = false; }
     if (navigator.share) {
       await navigator.share({
         title: "سي في عصام حمود",
-        text: "سي في عصام حمود",
+        text: "سي في عصام حمود | ملف أعمال احترافي",
         url: shareUrl
       });
       return;
     }
     await navigator.clipboard.writeText(shareUrl);
-    alert(t("shareCopied"));
+    alert("✅ " + t("shareCopied"));
   } catch (error) {
     console.error(error);
-    prompt(t("sharePrompt"), baseUrl);
+    if (btn) { btn.textContent = originalText; btn.disabled = false; }
+    if (shareUrl) {
+      prompt(t("sharePrompt"), shareUrl);
+    } else {
+      prompt(t("sharePrompt"), buildFallbackShareUrl(baseUrl));
+    }
   }
 }
 function toggleLanguage() {
@@ -483,26 +500,34 @@ els.portfolioModal.addEventListener("click", event => { const r = els.portfolioM
 const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("visible"); }); }, { threshold: .16 });
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 async function initSharedView() {
-  if (!sharePayload) return;
-
-  if (canUseFirebaseShare()) {
-    try {
-      const remoteState = await loadFirebaseSharedState(sharePayload);
-      if (remoteState) {
-        state = {
-          profile: { ...defaultData.profile, ...(remoteState.profile || {}) },
-          portfolio: Array.isArray(remoteState.portfolio) ? remoteState.portfolio : []
-        };
-        return;
+  // Firebase share (?s=)
+  if (sharePayload) {
+    if (canUseFirebaseShare()) {
+      try {
+        const remoteState = await loadFirebaseSharedState(sharePayload);
+        if (remoteState) {
+          state = {
+            profile: { ...defaultData.profile, ...(remoteState.profile || {}) },
+            portfolio: Array.isArray(remoteState.portfolio) ? remoteState.portfolio : []
+          };
+          return;
+        }
+      } catch (error) {
+        console.error("Firebase load error:", error);
       }
-    } catch (error) {
-      console.error(error);
     }
+    // Legacy base64 fallback in ?s=
+    const legacy = decodeShareState(sharePayload);
+    if (legacy) { state = legacy; return; }
   }
-
-  const legacy = decodeShareState(sharePayload);
-  if (legacy) {
-    state = legacy;
+  // Fallback base64 share (?d=)
+  if (fallbackPayload) {
+    try {
+      const decoded = decodeShareState(fallbackPayload);
+      if (decoded) { state = decoded; return; }
+    } catch (error) {
+      console.error("Fallback decode error:", error);
+    }
   }
 }
 async function initApp() {
