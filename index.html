@@ -1,370 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سي في عصام حمود | Nittaq | CV</title>
-  <meta name="description" content="نطاق | سي في | Nittaq | CV — موقع سيرة ذاتية وملف أعمال رسمي عربي / إنجليزي." />
-  <meta name="theme-color" content="#081326" />
-  <meta property="og:title" content="نطاق | سي في | Nittaq | CV" />
-  <meta property="og:description" content="موقع سيرة ذاتية وملف أعمال رسمي بتصميم رقمي احترافي." />
-  <meta property="og:type" content="website" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ملفي الرقمي | صفحة هبوط عربية احترافية</title>
+  <meta name="description" content="صفحة هبوط عربية احترافية لعرض السيرة الذاتية وملف الأعمال مع لوحة تحكم محلية ومجلدات زجاجية للصور والفيديوهات.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="سي في عصام حمود">
 </head>
 <body>
-  <div class="site-shell">
-    <header class="site-header container glass">
-      <a href="#hero" class="brand">
-        <span class="brand-mark">CV</span>
-        <span class="brand-text">
-          <strong id="brandNameAr">نطاق | سي في</strong>
-          <small id="brandNameEn">Nittaq | CV</small>
-        </span>
-      </a>
-
-      <nav class="site-nav">
-        <a href="#about" data-i18n="navAbout">نبذة</a>
-        <a href="#details" data-i18n="navDetails">البيانات</a>
-        <a href="#portfolio" data-i18n="navPortfolio">الأعمال</a>
-        <a href="#contact" data-i18n="navContact">التواصل</a>
-      </nav>
-
-      <div class="header-actions">
-        <button class="btn btn-ghost" id="shareBtn" data-i18n="share">مشاركة</button>
-        <button class="btn btn-ghost square" id="langToggle">AR</button>
-        <button class="btn btn-primary" id="openAdminBtn" data-i18n="dashboard">لوحة التحكم</button>
+  <div class="page-bg" aria-hidden="true"><span class="glow glow-a"></span><span class="glow glow-b"></span><span class="grid-layer"></span><span class="noise-layer"></span></div>
+  <header class="topbar container">
+    <a class="brand" href="#hero"><span class="brand-mark"></span><span data-i18n="brand">ملفي الرقمي</span></a>
+    <nav class="nav"><a href="#about" data-i18n="navAbout">نبذة</a><a href="#portfolio" data-i18n="navPortfolio">الأعمال</a><a href="#analytics" data-i18n="navData">البيانات</a><a href="#contact" data-i18n="navContact">التواصل</a></nav>
+    <div class="topbar-actions"><button class="ghost-btn" id="themeToggleBtn" type="button" title="تغيير الوضع">☀</button><button class="ghost-btn" id="languageToggleBtn" type="button" title="تغيير اللغة">AR</button><div class="topbar-actions admin-only"><button class="ghost-btn" id="shareLinkBtn" type="button" data-i18n="shareBtn">مشاركة</button><button class="ghost-btn" id="openAdminBtn" type="button" data-i18n="adminBtn">لوحة التحكم</button></div></div>
+  </header>
+  <main>
+    <section class="hero container" id="hero">
+      <div class="hero-copy reveal">
+        <span class="eyebrow-chip"><span class="dot"></span><span data-i18n="heroChip">هوية رقمية عربية بأسلوب فاخر وحديث</span></span>
+        <h1 id="heroName">اسمك هنا</h1>
+        <p class="hero-role" id="heroJobTitle">مصمم رقمي ومطور واجهات وتجارب بصرية</p>
+        <p class="lead" id="heroIntro">أبني حضورًا رقميًا احترافيًا يعرض سيرتي الذاتية وأعمالي وخدماتي بأسلوب عربي أنيق، واضح، وسهل التصفح مع لمسات بصرية رقمية راقية.</p>
+        <article class="welcome-card glass"><p class="label-text" data-i18n="welcomeLabel">رسالة ترحيبية</p><h2 id="welcomeTitle">أهلاً بك في موقعي الشخصي</h2><p id="welcomeText">يسعدني حضورك هنا. ستجد في هذه الصفحة نبذة تعريفية شاملة، بيانات السيرة الذاتية، وأعمالي المصنفة داخل مجلدات صور وفيديوهات بتجربة عرض حديثة واحترافية.</p></article>
+        <div class="hero-actions"><a class="primary-btn" href="#portfolio" data-i18n="viewPortfolio">استعرض ملف الأعمال</a><a class="secondary-btn" href="#about" data-i18n="learnMore">تعرف علي أكثر</a></div>
       </div>
-    </header>
-
-    <main>
-      <section class="hero container section" id="hero">
-        <div class="hero-grid">
-          <div class="hero-copy reveal">
-            <span class="badge" data-i18n="heroBadge">واجهة احترافية للسيرة الذاتية والملف المهني</span>
-            <h1 id="heroTitleAr">نطاق <span>| سي في</span></h1>
-            <h2 id="heroTitleEn" class="hero-subtitle">Nittaq <span>| CV</span></h2>
-            <p class="lead" id="heroIntro">
-              نطاق | سي في هو موقع سيرة ذاتية وملف أعمال عربي / إنجليزي مصمم لعرض البيانات المهنية والشخصية والأعمال داخل تجربة رقمية حديثة وجاهزة للنشر المباشر على GitHub وVercel.
-            </p>
-            <div class="hero-actions">
-              <a href="#about" class="btn btn-primary" data-i18n="learnMore">تعرف على أكثر</a>
-              <a href="#portfolio" class="btn btn-ghost" data-i18n="viewPortfolio">استعرض الأعمال</a>
-            </div>
-
-            <div class="stats-grid">
-              <article class="stat-card glass">
-                <strong id="expStat">5+</strong>
-                <span data-i18n="experience">سنوات الخبرة</span>
-              </article>
-              <article class="stat-card glass">
-                <strong id="projectsStat">12</strong>
-                <span data-i18n="projects">عدد المشاريع</span>
-              </article>
-              <article class="stat-card glass">
-                <strong id="clientsStat">8</strong>
-                <span data-i18n="clients">عدد العملاء</span>
-              </article>
-              <article class="stat-card glass">
-                <strong id="itemsStat">0</strong>
-                <span data-i18n="items">عدد العناصر</span>
-              </article>
-            </div>
-          </div>
-
-          <div class="hero-visual glass reveal">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-
-            <div class="profile-card">
-              <div class="profile-badge" data-i18n="profileBadge">واجهة رسمية مستقرة</div>
-              <div class="profile-image-wrap">
-                <img id="profileImage" class="profile-image" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Profile">
-              </div>
-              <h2 id="displayName">نطاق | سي في</h2>
-              <p id="displayJobTitle" class="muted">موقع سيرة ذاتية وملف أعمال رسمي</p>
-
-              <div class="mini-stats">
-                <div>
-                  <strong id="miniExp">5+</strong>
-                  <span data-i18n="experience">سنوات الخبرة</span>
-                </div>
-                <div>
-                  <strong id="miniProjects">12</strong>
-                  <span data-i18n="projects">عدد المشاريع</span>
-                </div>
-                <div>
-                  <strong id="miniClients">8</strong>
-                  <span data-i18n="clients">عدد العملاء</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="hero-visual reveal">
+        <div class="hero-card glass">
+          <div class="hero-card-head"><span data-i18n="profileCard">الملف التعريفي</span><span class="status-badge" data-i18n="active">نشط</span></div>
+          <div class="profile-orb"><div class="orb-ring orb-ring-a"></div><div class="orb-ring orb-ring-b"></div><div class="orb-core"><img id="profileImage" class="profile-image" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="الصورة الشخصية"></div></div>
+          <div class="mini-stats"><article><strong id="statExperience">5+</strong><span data-i18n="yearsExp">سنوات خبرة</span></article><article><strong id="statProjects">24</strong><span data-i18n="projectsDone">مشروع مكتمل</span></article><article><strong id="statClients">12</strong><span data-i18n="clientsPartners">عميل وشريك</span></article></div>
         </div>
-      </section>
-
-      <section class="container section" id="about">
-        <div class="section-head reveal center">
-          <span class="badge" data-i18n="aboutBadge">نبذة تعريفية</span>
-          <h2 data-i18n="aboutTitle">عن <span>الموقع</span></h2>
-          <p class="lead" data-i18n="aboutLead">واجهة رسمية لعرض السيرة الذاتية والملف المهني والأعمال بأسلوب عربي / إنجليزي حديث وواضح.</p>
-        </div>
-
-        <article class="feature-hero glass reveal">
-          <span class="section-kicker" data-i18n="siteAboutLabel">عن الموقع</span>
-          <h3 data-i18n="siteAboutTitle">نطاق | سي في — Nittaq | CV</h3>
-          <p id="siteAboutText" data-i18n="siteAboutText">
-            تم تصميم هذا الموقع ليكون واجهة رسمية لعرض السيرة الذاتية والملف المهني والأعمال بطريقة حديثة، واضحة، وسهلة النشر على GitHub وVercel دون إعدادات معقدة. يدعم العربية والإنجليزية ويمنحك لوحة تحكم محلية لتحديث المحتوى بسرعة.
-          </p>
-        </article>
-
-        <div class="cards-grid triple">
-          <article class="content-card glass reveal">
-            <h3 data-i18n="welcomeTitle">أهلاً بك في موقع نطاق | سي في</h3>
-            <p id="welcomeText">هذه النسخة مضبوطة لتكون واجهة رسمية مستقرة لعرض السيرة الذاتية والملف المهني والأعمال مع لوحة تحكم محلية، ودعم للعربية والإنجليزية، وتجربة عرض أنيقة مناسبة للنشر المباشر.</p>
-          </article>
-          <article class="content-card glass reveal">
-            <h3 data-i18n="bioTitle">نبذة مهنية</h3>
-            <p id="bioText">هذا الموقع مخصص لتقديم السيرة الذاتية والبيانات المهنية والأعمال ضمن تجربة رسمية، منظمة، وقابلة للتخصيص الكامل. يمكنك إدخال بياناتك وتحديث أعمالك وروابطك الاجتماعية بسهولة من لوحة التحكم.</p>
-          </article>
-          <article class="content-card glass reveal">
-            <h3 data-i18n="valueTitle">القيمة المضافة</h3>
-            <p id="valueText">جاهزية للنشر على GitHub وVercel بدون تعقيد، مع مود رقمي فاخر، ولوحة تحكم سهلة، ومظهر احترافي مناسب للعرض الرسمي.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="container section" id="details">
-        <div class="section-head reveal">
-          <span class="badge" data-i18n="detailsBadge">البيانات</span>
-          <h2 data-i18n="detailsTitle">البيانات <span>الشخصية والمهنية</span></h2>
-        </div>
-
-        <div class="cards-grid triple">
-          <article class="detail-card glass reveal">
-            <div class="info-row"><span data-i18n="fullName">الاسم الكامل</span><strong id="fullNameView">نطاق | سي في</strong></div>
-            <div class="info-row"><span data-i18n="fullNameEn">الاسم بالإنجليزية</span><strong id="fullNameEnView">Nittaq | CV</strong></div>
-            <div class="info-row"><span data-i18n="age">العمر</span><strong id="ageView">27</strong></div>
-            <div class="info-row"><span data-i18n="birthDate">تاريخ الميلاد</span><strong id="birthDateView">28 August 1999</strong></div>
-            <div class="info-row"><span data-i18n="city">المدينة</span><strong id="cityView">Jeddah</strong></div>
-          </article>
-
-          <article class="detail-card glass reveal">
-            <div class="info-row"><span data-i18n="jobTitle">المسمى المهني</span><strong id="jobTitleView">موقع سيرة ذاتية وملف أعمال رسمي</strong></div>
-            <div class="info-row"><span data-i18n="specialization">التخصص</span><strong id="specializationView">السيرة الذاتية، الملف المهني، والعرض الرقمي</strong></div>
-            <div class="info-row"><span data-i18n="workflow">أسلوب العمل</span><strong id="workflowView">استقرار، وضوح، وسهولة نشر</strong></div>
-            <div class="info-row"><span data-i18n="experience">سنوات الخبرة</span><strong id="experienceView">5+</strong></div>
-            <div class="info-row"><span data-i18n="projects">عدد المشاريع</span><strong id="projectsView">12</strong></div>
-          </article>
-
-          <article class="detail-card glass reveal">
-            <div class="info-row"><span>Email</span><strong id="emailView">hello@example.com</strong></div>
-            <div class="info-row"><span>WhatsApp</span><strong id="whatsappView">+966500000000</strong></div>
-            <div class="info-row"><span>Instagram</span><strong id="instagramView">instagram.com/username</strong></div>
-            <div class="info-row"><span>Behance</span><strong id="behanceView">behance.net/username</strong></div>
-            <div class="info-row"><span>LinkedIn</span><strong id="linkedinView">linkedin.com/in/username</strong></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="container section" id="portfolio">
-        <div class="section-head reveal">
-          <span class="badge" data-i18n="portfolioBadge">الأعمال</span>
-          <h2 data-i18n="portfolioTitle">ملف <span>الأعمال</span></h2>
-          <p class="lead" data-i18n="portfolioLead">مساحة لعرض الصور والفيديوهات والمواقع داخل بطاقات أنيقة، مع دعم رفع محلي أو روابط مباشرة حسب نوع العمل.</p>
-        </div>
-        <div class="portfolio-grid" id="portfolioGrid"></div>
-      </section>
-
-      <section class="container section" id="contact">
-        <div class="section-head reveal">
-          <span class="badge" data-i18n="contactBadge">التواصل</span>
-          <h2 data-i18n="contactTitle">روابط <span>التواصل</span></h2>
-        </div>
-
-        <div class="cards-grid quad">
-          <article class="content-card glass reveal">
-            <h3>WhatsApp</h3>
-            <p id="contactWhatsapp">+966500000000</p>
-          </article>
-          <article class="content-card glass reveal">
-            <h3>Instagram</h3>
-            <p id="contactInstagram">instagram.com/username</p>
-          </article>
-          <article class="content-card glass reveal">
-            <h3>Behance</h3>
-            <p id="contactBehance">behance.net/username</p>
-          </article>
-          <article class="content-card glass reveal">
-            <h3>LinkedIn</h3>
-            <p id="contactLinkedin">linkedin.com/in/username</p>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer class="container footer-wrap">
-      <div class="footer-box glass">
-        <div>
-          <strong>نطاق | سي في</strong>
-          <p data-i18n="footerText">واجهة رسمية لعرض السيرة الذاتية والملف المهني والأعمال بشكل عربي احترافي وقابل للنشر الفوري.</p>
-        </div>
-        <div class="footer-links">
-          <a href="#hero" data-i18n="navHome">الرئيسية</a>
-          <a href="#about" data-i18n="navAbout">نبذة</a>
-          <a href="#portfolio" data-i18n="navPortfolio">الأعمال</a>
-          <a href="#contact" data-i18n="navContact">التواصل</a>
-        </div>
+        <div class="float-card glass float-top"><span data-i18n="cvComplete">سيرة ذاتية شاملة</span><strong data-i18n="cvPrecise">بيانات شخصية ومهنية دقيقة</strong></div>
       </div>
-    </footer>
-  </div>
-
-  <div class="overlay" id="adminOverlay"></div>
-  <aside class="admin-drawer glass" id="adminDrawer" aria-hidden="true">
-    <div class="drawer-head">
-      <div>
-        <h3 data-i18n="dashboard">لوحة التحكم</h3>
-        <p data-i18n="dashboardLead">حدّث البيانات مباشرة وسيتم حفظها محليًا داخل المتصفح.</p>
-      </div>
-      <button class="btn btn-ghost square" id="closeAdminBtn">×</button>
-    </div>
-
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="profile" data-i18n="profileTab">البيانات</button>
-      <button class="tab-btn" data-tab="media" data-i18n="mediaTab">الوسائط</button>
-    </div>
-
-    <form id="profileForm" class="admin-form tab-panel active" data-panel="profile">
-      <label class="field-group">
-        <span>الاسم الكامل</span>
-        <input class="field" name="fullName" />
-      </label>
-      <label class="field-group">
-        <span>الاسم بالإنجليزية</span>
-        <input class="field" name="fullNameEn" />
-      </label>
-      <label class="field-group">
-        <span>العمر</span>
-        <input class="field" name="age" />
-      </label>
-      <label class="field-group">
-        <span>تاريخ الميلاد</span>
-        <input class="field" name="birthDate" />
-      </label>
-      <label class="field-group">
-        <span>المدينة</span>
-        <input class="field" name="city" />
-      </label>
-      <label class="field-group">
-        <span>المسمى المهني</span>
-        <input class="field" name="jobTitle" />
-      </label>
-      <label class="field-group">
-        <span>التخصص</span>
-        <input class="field" name="specialization" />
-      </label>
-      <label class="field-group">
-        <span>أسلوب العمل</span>
-        <input class="field" name="workflow" />
-      </label>
-      <label class="field-group">
-        <span>سنوات الخبرة</span>
-        <input class="field" name="experience" />
-      </label>
-      <label class="field-group">
-        <span>عدد المشاريع</span>
-        <input class="field" name="projects" />
-      </label>
-      <label class="field-group">
-        <span>عدد العملاء</span>
-        <input class="field" name="clients" />
-      </label>
-
-      <label class="field-group full">
-        <span>رابط الصورة الشخصية</span>
-        <input class="field" name="profileImageUrl" id="profileImageUrl" placeholder="https://..." />
-      </label>
-      <label class="field-group full">
-        <span>أو رفع الصورة الشخصية محليًا</span>
-        <input class="field" type="file" id="profileImageFile" accept="image/*" />
-      </label>
-
-      <label class="field-group">
-        <span>البريد الإلكتروني</span>
-        <input class="field" name="email" />
-      </label>
-      <label class="field-group">
-        <span>واتساب</span>
-        <input class="field" name="whatsapp" />
-      </label>
-      <label class="field-group">
-        <span>Instagram</span>
-        <input class="field" name="instagram" />
-      </label>
-      <label class="field-group">
-        <span>Behance</span>
-        <input class="field" name="behance" />
-      </label>
-      <label class="field-group">
-        <span>LinkedIn</span>
-        <input class="field" name="linkedin" />
-      </label>
-      <label class="field-group full">
-        <span>المقدمة الرئيسية</span>
-        <textarea class="field textarea" name="heroIntro"></textarea>
-      </label>
-      <label class="field-group full">
-        <span>رسالة الترحيب</span>
-        <textarea class="field textarea" name="welcome"></textarea>
-      </label>
-      <label class="field-group full">
-        <span>النبذة المهنية</span>
-        <textarea class="field textarea" name="bio"></textarea>
-      </label>
-      <label class="field-group full">
-        <span>القيمة المضافة</span>
-        <textarea class="field textarea" name="value"></textarea>
-      </label>
-      <div class="drawer-actions">
-        <button type="submit" class="btn btn-primary" data-i18n="save">حفظ</button>
-        <button type="button" class="btn btn-ghost" id="resetBtn" data-i18n="reset">إعادة الضبط</button>
-      </div>
-    </form>
-
-    <form id="mediaForm" class="admin-form tab-panel" data-panel="media">
-      <label class="field-group">
-        <span>نوع الوسيط</span>
-        <select class="field" id="mediaType">
-          <option value="image">صورة</option>
-          <option value="video">فيديو</option>
-          <option value="website">موقع</option>
-        </select>
-      </label>
-      <label class="field-group">
-        <span>عنوان العمل</span>
-        <input class="field" id="mediaTitle" />
-      </label>
-      <label class="field-group full">
-        <span>وصف مختصر</span>
-        <textarea class="field textarea" id="mediaDescription"></textarea>
-      </label>
-      <label class="field-group full">
-        <span>رابط مباشر للصورة أو الفيديو</span>
-        <input class="field" id="mediaUrl" placeholder="https://..." />
-      </label>
-      <label class="field-group full">
-        <span>أو رفع ملف محلي</span>
-        <input class="field" type="file" id="mediaFile" accept="image/*,video/*" />
-      </label>
-      <div class="drawer-actions">
-        <button type="submit" class="btn btn-primary" data-i18n="addMedia">إضافة الوسيط</button>
-        <button type="button" class="btn btn-ghost" id="clearMediaBtn" data-i18n="clearMedia">مسح الوسائط</button>
-      </div>
-    </form>
-  </aside>
-
+    </section>
+    <section class="section container" id="about"><div class="section-head section-head-centered reveal"><h2 data-i18n="aboutTitle">نبذة تعريفية</h2></div><div class="cv-grid"><article class="glass section-card reveal"><h3 data-i18n="personalData">البيانات الشخصية</h3><dl class="info-list" id="personalInfo"></dl></article><article class="glass section-card reveal"><h3 data-i18n="professionalData">البيانات المهنية</h3><div class="bio-block" id="professionalBio"></div><div class="skills-wrap" id="skillsWrap"></div></article></div></section>
+    <section class="section container" id="portfolio"><div class="section-head section-head-centered reveal"><h2 data-i18n="portfolioTitle">ملف الاعمال</h2></div><div class="folders-grid"><button class="folder-card glass reveal" type="button" data-folder="images"><span class="folder-tab"></span><div class="folder-body"><div class="folder-preview" id="imagesPreview"></div><p class="label-text" data-i18n="imagesFolder">مجلد الصور</p><strong data-i18n="imagesGallery">معرض الصور</strong><p data-i18n="imagesDesc">للتصاميم، الهوية البصرية، الإعلانات، البوسترات، والمواد الثابتة.</p><span class="folder-count" id="imagesCount">0 عنصر</span></div></button><button class="folder-card glass reveal" type="button" data-folder="videos"><span class="folder-tab"></span><div class="folder-body"><div class="folder-preview" id="videosPreview"></div><p class="label-text" data-i18n="videosFolder">مجلد الفيديوهات</p><strong data-i18n="videosGallery">معرض الفيديو</strong><p data-i18n="videosDesc">للموشن، المقاطع الإعلانية، الريلز، العروض المتحركة، وأعمال الفيديو.</p><span class="folder-count" id="videosCount">0 عنصر</span></div></button></div></section>
+    <section class="section container" id="analytics"><div class="section-head section-head-centered reveal"><h2 data-i18n="extraData">بيانات اضافية</h2></div><div class="analytics-grid"><article class="glass metric-card reveal"><span data-i18n="specializationLabel">مجال التخصص</span><strong id="specializationText">تصميم رقمي وتطوير واجهات</strong></article><article class="glass metric-card reveal"><span data-i18n="workflowLabel">أسلوب العمل</span><strong id="workflowText">دقة، ترتيب، وتنفيذ بصري راقٍ</strong></article><article class="glass metric-card reveal"><span data-i18n="valueLabel">القيمة المضافة</span><strong id="valueText">حلول تجمع الجمال والوضوح والنتيجة العملية</strong></article></div></section>
+    <section class="section container" id="contact"><article class="contact-card glass reveal"><div><p class="section-kicker contact-kicker" data-i18n="navContact">التواصل</p><h2 data-i18n="contactHeading">ابدأ بعرض أعمالك بصورة تليق بك</h2><div class="social-bar glass"><a class="social-link social-whatsapp" id="socialWhatsapp" href="#" target="_blank" rel="noreferrer" aria-label="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-5.8c-.2-.1-1.4-.7-1.6-.7-.2-.1-.4-.1-.6.1l-.5.7c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.3 7.3 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.5-.1-.5-.7-1.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4a2.9 2.9 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.1 1.9 3 4.6 4.2 2.7 1.2 2.7.8 3.2.8.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></a><a class="social-link social-instagram" id="socialInstagram" href="#" target="_blank" rel="noreferrer" aria-label="انستغرام"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm10.3 1.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2A2.8 2.8 0 1 0 12 15a2.8 2.8 0 0 0 0-5.6Z"/></svg></a><a class="social-link social-x" id="socialX" href="#" target="_blank" rel="noreferrer" aria-label="إكس"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h4.4l4.3 5.8L17.5 3H20l-6.1 6.9L21 21h-4.4l-4.8-6.4L6 21H3.5l6.8-7.7L4 3Z"/></svg></a><a class="social-link social-behance" id="socialBehance" href="#" target="_blank" rel="noreferrer" aria-label="بيهانس"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h7c2.3 0 4 1 4 3.2 0 1.2-.6 2.1-1.6 2.6 1.4.4 2.2 1.6 2.2 3.2 0 2.6-2.2 4-4.7 4H3V6Zm3 5h3.3c1.1 0 1.8-.5 1.8-1.6 0-1.2-.9-1.5-1.9-1.5H6V11Zm0 5.5h3.5c1.3 0 2.2-.4 2.2-1.8 0-1.4-.8-1.9-2.1-1.9H6v3.7ZM16 8h5v1.5h-5V8Zm5.1 7h-5.6c.1 1.3 1 2.1 2.3 2.1.8 0 1.6-.3 1.9-1h1.3c-.5 1.8-1.8 2.9-3.7 2.9-2.5 0-4-1.8-4-4.2 0-2.4 1.6-4.3 4-4.3 2.7 0 4 2.2 3.8 4.5Zm-5.5-1.3h4.2c-.1-1-.8-1.8-2-1.8-1.2 0-2 .7-2.2 1.8Z"/></svg></a><a class="social-link social-email" id="socialEmail" href="#" target="_blank" rel="noreferrer" aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.2l9 5.8 9-5.8V7H3Zm18 10V9.5l-8.5 5.4a1 1 0 0 1-1 0L3 9.5V17h18Z"/></svg></a></div></div><a class="primary-btn" id="contactButton" href="#" target="_blank" rel="noreferrer" data-i18n="contactNow">تواصل الآن</a></article></section>
+  </main>
+  <aside class="admin-panel" id="adminPanel" aria-hidden="true"><div class="admin-overlay" id="adminOverlay"></div><div class="admin-drawer"><div class="admin-header"><div><p class="label-text">لوحة التحكم</p><h2>إدارة بيانات الموقع والأعمال</h2></div><button class="icon-btn" id="closeAdminBtn" type="button" aria-label="إغلاق">×</button></div><div class="admin-content"><form class="admin-form" id="profileForm"><h3>بيانات السيرة الذاتية</h3><div class="form-grid"><label><span>الاسم الكامل</span><input name="fullName" type="text"></label><label><span>الاسم الكامل بالانجليزية</span><input name="fullNameEn" type="text"></label><label><span>العمر</span><input name="age" type="text"></label><label><span>تاريخ الميلاد</span><input name="birthDate" type="text"></label><label><span>تاريخ الميلاد بالانجليزية</span><input name="birthDateEn" type="text"></label><label><span>المدينة</span><input name="city" type="text"></label><label><span>المدينة بالانجليزية</span><input name="cityEn" type="text"></label><label><span>المسمى المهني</span><input name="jobTitle" type="text"></label><label><span>المسمى المهني بالانجليزية</span><input name="jobTitleEn" type="text"></label><label><span>سنوات الخبرة</span><input name="experience" type="text"></label><label><span>عدد المشاريع</span><input name="projects" type="text"></label><label><span>عدد العملاء</span><input name="clients" type="text"></label><label class="full"><span>رابط الصورة الشخصية</span><input name="profileImage" type="text" placeholder="https://..."></label><label class="full"><span>أو تحميل الصورة الشخصية من الجهاز</span><input name="profileImageFile" type="file" accept="image/*"></label><label class="full"><span>مقدمة قصيرة</span><textarea name="intro" rows="3"></textarea></label><label class="full"><span>مقدمة قصيرة بالانجليزية</span><textarea name="introEn" rows="3"></textarea></label><label class="full"><span>عنوان رسالة الترحيب</span><input name="welcomeTitle" type="text"></label><label class="full"><span>عنوان رسالة الترحيب بالانجليزية</span><input name="welcomeTitleEn" type="text"></label><label class="full"><span>رسالة الترحيب</span><textarea name="welcome" rows="3"></textarea></label><label class="full"><span>رسالة الترحيب بالانجليزية</span><textarea name="welcomeEn" rows="3"></textarea></label><label class="full"><span>نبذة مهنية</span><textarea name="bio" rows="4"></textarea></label><label class="full"><span>نبذة مهنية بالانجليزية</span><textarea name="bioEn" rows="4"></textarea></label><label class="full"><span>المهارات مفصولة بفاصلة</span><input name="skills" type="text"></label><label class="full"><span>المهارات بالانجليزية</span><input name="skillsEn" type="text"></label><label class="full"><span>مجال التخصص</span><input name="specialization" type="text"></label><label class="full"><span>مجال التخصص بالانجليزية</span><input name="specializationEn" type="text"></label><label class="full"><span>أسلوب العمل</span><input name="workflow" type="text"></label><label class="full"><span>أسلوب العمل بالانجليزية</span><input name="workflowEn" type="text"></label><label class="full"><span>القيمة المضافة</span><input name="value" type="text"></label><label class="full"><span>القيمة المضافة بالانجليزية</span><input name="valueEn" type="text"></label><label class="full"><span>رابط واتساب</span><input name="socialWhatsapp" type="text" placeholder="https://wa.me/..."></label><label class="full"><span>رابط انستغرام</span><input name="socialInstagram" type="text" placeholder="https://instagram.com/..."></label><label class="full"><span>رابط إكس</span><input name="socialX" type="text" placeholder="https://x.com/..."></label><label class="full"><span>رابط بيهانس</span><input name="socialBehance" type="text" placeholder="https://behance.net/..."></label><label class="full"><span>البريد الإلكتروني أو رابط mailto</span><input name="socialEmail" type="text" placeholder="mailto:you@example.com"></label><label class="full"><span>رابط زر التواصل</span><input name="contactLink" type="text" placeholder="https://wa.me/..."></label></div><button class="primary-btn wide" type="submit">حفظ بيانات الموقع</button></form><form class="admin-form" id="portfolioForm"><h3>إضافة عمل جديد</h3><div class="form-grid"><label><span>نوع العمل</span><select name="type"><option value="images">صورة</option><option value="videos">فيديو</option></select></label><label><span>عنوان العمل</span><input name="title" type="text"></label><label class="full"><span>وصف مختصر</span><textarea name="description" rows="3"></textarea></label><label class="full"><span>رابط صورة الغلاف</span><input name="cover" type="text" placeholder="https://..."></label><label class="full"><span>أو تحميل صورة الغلاف من الجهاز</span><input name="coverFile" type="file" accept="image/*"></label><label class="full"><span>رابط الفيديو إن وجد</span><input name="videoUrl" type="text" placeholder="https://..."></label><label class="full"><span>أو تحميل فيديو من الجهاز</span><input name="videoFile" type="file" accept="video/*"></label></div><button class="primary-btn wide" type="submit">إضافة العمل</button></form><section class="admin-form"><div class="admin-list-head"><h3>العناصر الحالية</h3><div class="admin-actions"><button class="ghost-btn small" id="resetDataBtn" type="button">إعادة البيانات الافتراضية</button></div></div><div class="admin-items" id="portfolioAdminList"></div></section></div></div></aside>
+  <dialog class="portfolio-modal" id="portfolioModal"><div class="modal-head"><div><p class="label-text">معرض الأعمال</p><h3 id="modalTitle">الصور</h3></div><button class="icon-btn" id="closeModalBtn" type="button" aria-label="إغلاق">×</button></div><div class="modal-grid" id="modalGrid"></div></dialog>
+  <template id="portfolioItemTemplate"><article class="portfolio-item glass"><div class="thumb-wrap"><img class="item-thumb" alt=""></div><div class="item-copy"><strong class="item-title"></strong><p class="item-description"></p><a class="item-link" target="_blank" rel="noreferrer">فتح العنصر</a></div></article></template>
   <script src="app.js"></script>
 </body>
 </html>
+
+
