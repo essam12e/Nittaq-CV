@@ -119,6 +119,10 @@ function readFileAsDataUrl(file) {
       resolve("");
       return;
     }
+    if (String(file.type || "").startsWith("video/") && file.size > 2 * 1024 * 1024) {
+      resolve(URL.createObjectURL(file));
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => resolve(String(reader.result || ""));
     reader.onerror = () => reject(new Error("file_read_failed"));
@@ -169,7 +173,8 @@ const defaultData = {
   },
   portfolio: [
     { id: createId(), type: "images", title: "هوية إعلانية رقمية", description: "نموذج عرض لعمل بصري بأسلوب رقمي حديث يصلح للبوسترات والإعلانات.", cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80", videoUrl: "" },
-    { id: createId(), type: "videos", title: "عرض موشن تعريفي", description: "مثال لفيديو تعريفي أو عرض مشروع يمكن ربطه من يوتيوب أو فيميو أو رابط مباشر.", cover: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80", videoUrl: "https://example.com/video" }
+    { id: createId(), type: "videos", title: "عرض موشن تعريفي", description: "مثال لفيديو تعريفي أو عرض مشروع يمكن ربطه من يوتيوب أو فيميو أو رابط مباشر.", cover: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80", videoUrl: "https://example.com/video" },
+    { id: createId(), type: "websites", title: "صفحة هبوط احترافية", description: "مثال لعمل موقع أو صفحة هبوط مع رابط مباشر.", cover: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80", videoUrl: "https://example.com" }
   ]
 };
 const els = {
@@ -189,7 +194,7 @@ const sharedTheme = queryParams.get("t") || queryParams.get("theme");
 let currentLang = sharedLang || localStorage.getItem(LANG_KEY) || "ar";
 let currentTheme = sharedTheme || localStorage.getItem(THEME_KEY) || "dark";
 const translations = {
-  ar: { brand: "ملفي الرقمي", navAbout: "نبذة", navPortfolio: "الأعمال", navData: "البيانات", navContact: "التواصل", shareBtn: "مشاركة", adminBtn: "لوحة التحكم", heroChip: "هوية رقمية عربية بأسلوب فاخر وحديث", welcomeLabel: "رسالة ترحيبية", viewPortfolio: "استعرض ملف الأعمال", learnMore: "تعرف علي أكثر", profileCard: "الملف التعريفي", active: "نشط", yearsExp: "سنوات خبرة", projectsDone: "مشروع مكتمل", clientsPartners: "عميل وشريك", cvComplete: "سيرة ذاتية شاملة", cvPrecise: "بيانات شخصية ومهنية دقيقة", aboutTitle: "نبذة تعريفية", personalData: "البيانات الشخصية", professionalData: "البيانات المهنية", portfolioTitle: "ملف الاعمال", imagesFolder: "مجلد الصور", imagesGallery: "معرض الصور", imagesDesc: "للتصاميم، الهوية البصرية، الإعلانات، البوسترات، والمواد الثابتة.", videosFolder: "مجلد الفيديوهات", videosGallery: "معرض الفيديو", videosDesc: "للموشن، المقاطع الإعلانية، الريلز، العروض المتحركة، وأعمال الفيديو.", extraData: "بيانات اضافية", specializationLabel: "مجال التخصص", workflowLabel: "أسلوب العمل", valueLabel: "القيمة المضافة", contactHeading: "ابدأ بعرض أعمالك بصورة تليق بك", contactNow: "تواصل الآن", itemWord: "عنصر", imageWord: "صورة", videoWord: "فيديو", openVideo: "فتح الفيديو", openImage: "فتح الصورة", noItems: "لا توجد عناصر بعد", noItemsDesc: "أضف أعمالك من لوحة التحكم لتظهر هنا تلقائيًا.", shareCopied: "تم نسخ رابط المشاركة.", sharePrompt: "انسخ رابط المشاركة:", modalImages: "الصور", modalVideos: "الفيديوهات", fullName: "الاسم الكامل", age: "العمر", birthDate: "تاريخ الميلاد", city: "المدينة", jobTitle: "المسمى المهني", experience: "سنوات الخبرة" },
+  ar: { brand: "ملفي الرقمي", navAbout: "نبذة", navPortfolio: "الأعمال", navData: "البيانات", navContact: "التواصل", shareBtn: "مشاركة", adminBtn: "لوحة التحكم", heroChip: "هوية رقمية عربية بأسلوب فاخر وحديث", welcomeLabel: "رسالة ترحيبية", viewPortfolio: "استعرض ملف الأعمال", learnMore: "تعرف علي أكثر", profileCard: "الملف التعريفي", active: "نشط", yearsExp: "سنوات خبرة", projectsDone: "مشروع مكتمل", clientsPartners: "عميل وشريك", cvComplete: "سيرة ذاتية شاملة", cvPrecise: "بيانات شخصية ومهنية دقيقة", aboutTitle: "نبذة تعريفية", personalData: "البيانات الشخصية", professionalData: "البيانات المهنية", portfolioTitle: "ملف الاعمال", imagesFolder: "مجلد الصور", imagesGallery: "معرض الصور", imagesDesc: "للتصاميم، الهوية البصرية، الإعلانات، البوسترات، والمواد الثابتة.", videosFolder: "مجلد الفيديوهات", videosGallery: "معرض الفيديو", videosDesc: "للموشن، المقاطع الإعلانية، الريلز، العروض المتحركة، وأعمال الفيديو.", websitesFolder: "مجلد المواقع", websitesGallery: "معرض المواقع", websitesDesc: "لتصاميم المواقع وصفحات الهبوط وروابط الأعمال المنفذة على الويب.", websiteWord: "موقع", openWebsite: "فتح الموقع", modalWebsites: "المواقع", extraData: "بيانات اضافية", specializationLabel: "مجال التخصص", workflowLabel: "أسلوب العمل", valueLabel: "القيمة المضافة", contactHeading: "ابدأ بعرض أعمالك بصورة تليق بك", contactNow: "تواصل الآن", itemWord: "عنصر", imageWord: "صورة", videoWord: "فيديو", openVideo: "فتح الفيديو", openImage: "فتح الصورة", noItems: "لا توجد عناصر بعد", noItemsDesc: "أضف أعمالك من لوحة التحكم لتظهر هنا تلقائيًا.", shareCopied: "تم نسخ رابط المشاركة.", sharePrompt: "انسخ رابط المشاركة:", modalImages: "الصور", modalVideos: "الفيديوهات", fullName: "الاسم الكامل", age: "العمر", birthDate: "تاريخ الميلاد", city: "المدينة", jobTitle: "المسمى المهني", experience: "سنوات الخبرة" },
   en: { brand: "My Digital Portfolio", navAbout: "About", navPortfolio: "Portfolio", navData: "Data", navContact: "Contact", shareBtn: "Share", adminBtn: "Admin", heroChip: "Luxury Arabic digital identity", welcomeLabel: "Welcome Message", viewPortfolio: "View Portfolio", learnMore: "Learn More", profileCard: "Profile Card", active: "Active", yearsExp: "Years Experience", projectsDone: "Completed Projects", clientsPartners: "Clients & Partners", cvComplete: "Complete CV", cvPrecise: "Accurate personal and professional data", aboutTitle: "About", personalData: "Personal Information", professionalData: "Professional Information", portfolioTitle: "Portfolio", imagesFolder: "Images Folder", imagesGallery: "Image Gallery", imagesDesc: "For designs, branding, ads, posters, and static work.", videosFolder: "Videos Folder", videosGallery: "Video Gallery", videosDesc: "For motion, promo clips, reels, and video work.", extraData: "Additional Data", specializationLabel: "Specialization", workflowLabel: "Workflow", valueLabel: "Added Value", contactHeading: "Start showcasing your work professionally", contactNow: "Contact Now", itemWord: "items", imageWord: "Image", videoWord: "Video", openVideo: "Open Video", openImage: "Open Image", noItems: "No items yet", noItemsDesc: "Add your work from the admin panel to show it here.", shareCopied: "Share link copied.", sharePrompt: "Copy share link:", modalImages: "Images", modalVideos: "Videos", fullName: "Full Name", age: "Age", birthDate: "Birth Date", city: "City", jobTitle: "Job Title", experience: "Years of Experience" }
 };
 let state = loadState();
@@ -212,6 +217,7 @@ function serializeCompactState(source) {
     const compact = {};
     Object.entries(item || {}).forEach(([key, value]) => {
       if (value !== "" && value !== null && value !== undefined) {
+        if (typeof value === "string" && value.startsWith("blob:")) return;
         compact[PORTFOLIO_KEY_MAP[key] || key] = value;
       }
     });
@@ -278,14 +284,16 @@ function applyTheme() {
   }
 }
 function renderSkills(skillsValue) { const skills = skillsValue.split(",").map(item => item.trim()).filter(Boolean); els.skillsWrap.innerHTML = skills.map(skill => `<span>${skill}</span>`).join(""); }
-function renderPortfolioCounts() { const imagesCount = state.portfolio.filter(item => item.type === "images").length; const videosCount = state.portfolio.filter(item => item.type === "videos").length; els.imagesCount.textContent = `${imagesCount} ${t("itemWord")}`; els.videosCount.textContent = `${videosCount} ${t("itemWord")}`; }
+function renderPortfolioCounts() { const imagesCount = state.portfolio.filter(item => item.type === "images").length; const videosCount = state.portfolio.filter(item => item.type === "videos").length; const websitesCount = state.portfolio.filter(item => item.type === "websites").length; els.imagesCount.textContent = `${imagesCount} ${t("itemWord")}`; els.videosCount.textContent = `${videosCount} ${t("itemWord")}`; const wc = document.getElementById("websitesCount"); if (wc) wc.textContent = `${websitesCount} ${t("itemWord")}`; }
 function renderFolderPreview(target, type) {
   if (!target) return;
   const items = state.portfolio.filter(item => item.type === type).slice(0, 4);
   if (!items.length) {
     const placeholder = type === "images"
       ? "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='320'><rect width='100%25' height='100%25' rx='28' fill='%23122139'/><text x='50%25' y='54%25' text-anchor='middle' fill='white' font-size='28' font-family='Arial'>Portfolio</text></svg>"
-      : getVideoPlaceholder("Video");
+      : type === "websites"
+        ? "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='320'><rect width='100%25' height='100%25' rx='28' fill='%23122139'/><text x='50%25' y='46%25' text-anchor='middle' fill='white' font-size='28' font-family='Arial'>Website</text><text x='50%25' y='60%25' text-anchor='middle' fill='%239ab3d6' font-size='16' font-family='Arial'>Preview</text></svg>"
+        : getVideoPlaceholder("Video");
     target.innerHTML = `<span class="preview-card main"><img src="${placeholder}" alt=""></span><span class="preview-card small one"></span><span class="preview-card small two"></span><span class="preview-card small three"></span>`;
     return;
   }
@@ -294,12 +302,15 @@ function renderFolderPreview(target, type) {
 }
 function renderAdminList() {
   if (!state.portfolio.length) { els.portfolioAdminList.innerHTML = `<div class="admin-item"><div><strong>لا توجد أعمال مضافة بعد</strong><p>أضف صورك أو فيديوهاتك من النموذج أعلاه.</p></div></div>`; return; }
-  els.portfolioAdminList.innerHTML = state.portfolio.map(item => `<article class="admin-item"><div><strong>${item.title}</strong><p>${item.type === "images" ? t("imageWord") : t("videoWord")} — ${item.description || "..."}</p></div><button class="delete-btn" type="button" data-id="${item.id}">حذف</button></article>`).join("");
+  els.portfolioAdminList.innerHTML = state.portfolio.map(item => {
+    const typeLabel = item.type === "images" ? t("imageWord") : item.type === "videos" ? t("videoWord") : t("websiteWord");
+    return `<article class="admin-item"><div><strong>${item.title}</strong><p>${typeLabel} — ${item.description || "..."}</p></div><button class="delete-btn" type="button" data-id="${item.id}">حذف</button></article>`;
+  }).join("");
   els.portfolioAdminList.querySelectorAll("[data-id]").forEach(button => button.addEventListener("click", () => { state.portfolio = state.portfolio.filter(item => item.id !== button.dataset.id); saveState(); renderAll(); }));
 }
 function renderModal(folderType) {
   const items = state.portfolio.filter(item => item.type === folderType);
-  els.modalTitle.textContent = folderType === "images" ? t("modalImages") : t("modalVideos");
+  els.modalTitle.textContent = folderType === "images" ? t("modalImages") : folderType === "videos" ? t("modalVideos") : t("modalWebsites");
   els.modalGrid.innerHTML = "";
   if (!items.length) { els.modalGrid.innerHTML = `<article class="portfolio-item glass"><div class="item-copy"><strong class="item-title">${t("noItems")}</strong><p class="item-description">${t("noItemsDesc")}</p></div></article>`; }
   else {
@@ -311,8 +322,16 @@ function renderModal(folderType) {
       node.querySelector(".item-title").textContent = item.title;
       node.querySelector(".item-description").textContent = item.description || "بدون وصف";
       const link = node.querySelector(".item-link");
-      link.href = item.type === "videos" ? (item.videoUrl || item.cover || "#") : (item.cover || "#");
-      link.textContent = item.type === "videos" ? t("openVideo") : t("openImage");
+      if (item.type === "videos") {
+        link.href = item.videoUrl || item.cover || "#";
+        link.textContent = t("openVideo");
+      } else if (item.type === "websites") {
+        link.href = item.videoUrl || item.cover || "#";
+        link.textContent = t("openWebsite");
+      } else {
+        link.href = item.cover || "#";
+        link.textContent = t("openImage");
+      }
       els.modalGrid.appendChild(node);
     });
   }
@@ -326,7 +345,7 @@ function fillForms() { Object.entries(state.profile).forEach(([key, value]) => {
 function renderAll() {
   const p = state.profile;
   els.heroName.textContent = localizedValue("fullName", "fullNameEn") || "اسمك هنا"; els.heroJobTitle.textContent = localizedValue("jobTitle", "jobTitleEn"); els.heroIntro.textContent = localizedValue("intro", "introEn"); els.welcomeTitle.textContent = localizedValue("welcomeTitle", "welcomeTitleEn") || "أهلاً بك"; els.welcomeText.textContent = localizedValue("welcome", "welcomeEn"); els.statExperience.textContent = p.experience || "0"; els.statProjects.textContent = p.projects || "0"; els.statClients.textContent = p.clients || "0"; els.personalInfo.innerHTML = personalInfoMarkupLang(p); els.professionalBio.textContent = localizedValue("bio", "bioEn"); renderSkills(localizedValue("skills", "skillsEn")); els.specializationText.textContent = localizedValue("specialization", "specializationEn"); els.workflowText.textContent = localizedValue("workflow", "workflowEn"); els.valueText.textContent = localizedValue("value", "valueEn"); els.contactButton.href = p.contactLink || "#"; if (els.profileImage) { els.profileImage.src = p.profileImage || defaultData.profile.profileImage; } if (els.socialWhatsapp) els.socialWhatsapp.href = p.socialWhatsapp || "#"; if (els.socialInstagram) els.socialInstagram.href = p.socialInstagram || "#"; if (els.socialX) els.socialX.href = p.socialX || "#"; if (els.socialBehance) els.socialBehance.href = p.socialBehance || "#"; if (els.socialEmail) els.socialEmail.href = p.socialEmail || "#";
-  renderPortfolioCounts(); renderFolderPreview(els.imagesPreview, "images"); renderFolderPreview(els.videosPreview, "videos"); renderAdminList(); fillForms();
+  renderPortfolioCounts(); renderFolderPreview(els.imagesPreview, "images"); renderFolderPreview(els.videosPreview, "videos"); const websitesPreview = document.getElementById("websitesPreview"); if (websitesPreview) renderFolderPreview(websitesPreview, "websites"); renderAdminList(); fillForms();
   applyLanguage();
   applyTheme();
 }
@@ -342,13 +361,19 @@ function encodeShareState() {
   return base64UrlEncode(JSON.stringify(serializeCompactState(state)));
 }
 async function copyShareLink() {
+  const shareUrl = new URL(window.location.origin + window.location.pathname.replace(/index\.html$/i, ""));
+  shareUrl.searchParams.set("s", encodeShareState());
+  shareUrl.searchParams.set("l", currentLang);
+  shareUrl.searchParams.set("t", currentTheme);
   try {
-    const shareUrl = window.location.origin + window.location.pathname.replace(/index\.html$/i, "");
-    await navigator.clipboard.writeText(shareUrl);
+    if (navigator.share) {
+      await navigator.share({ title: "سي في عصام حمود", text: "سي في عصام حمود", url: shareUrl.toString() });
+      return;
+    }
+    await navigator.clipboard.writeText(shareUrl.toString());
     alert(t("shareCopied"));
   } catch {
-    const fallbackUrl = window.location.origin + window.location.pathname.replace(/index\.html$/i, "");
-    prompt(t("sharePrompt"), fallbackUrl);
+    prompt(t("sharePrompt"), shareUrl.toString());
   }
 }
 function toggleLanguage() {
@@ -389,8 +414,11 @@ els.portfolioForm.addEventListener("submit", async event => {
   const description = String(formData.get("description") || "").trim();
   const coverLink = String(formData.get("cover") || "").trim();
   const videoLink = String(formData.get("videoUrl") || "").trim();
-  const finalCover = coverFileData || coverLink || (type === "videos" ? getVideoPlaceholder(title) : "");
-  const finalVideo = videoFileData || videoLink;
+  const finalCover = coverFileData || coverLink || (type === "videos" ? getVideoPlaceholder(title) : type === "websites" ? "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'><rect width='100%25' height='100%25' rx='32' fill='%23122139'/><text x='50%25' y='46%25' text-anchor='middle' fill='white' font-size='48' font-family='Arial'>Website</text><text x='50%25' y='58%25' text-anchor='middle' fill='%239ab3d6' font-size='24' font-family='Arial'>Project Preview</text></svg>" : "");
+  let finalVideo = videoFileData || videoLink;
+  if (type === "websites" && finalVideo && !/^https?:\/\//i.test(finalVideo)) {
+    finalVideo = `https://${finalVideo}`;
+  }
   const item = { id: createId(), type, title, description, cover: finalCover, videoUrl: finalVideo };
   if (!item.title || !item.cover) {
     alert("أدخل عنوان العمل وأضف صورة غلاف بالرابط أو من جهازك.");
@@ -398,6 +426,10 @@ els.portfolioForm.addEventListener("submit", async event => {
   }
   if (type === "videos" && !item.videoUrl) {
     alert("أضف رابط الفيديو أو ارفع ملف الفيديو من جهازك.");
+    return;
+  }
+  if (type === "websites" && !item.videoUrl) {
+    alert("أضف رابط الموقع.");
     return;
   }
   state.portfolio.unshift(item);
@@ -437,35 +469,4 @@ async function initApp() {
   renderAll();
 }
 initApp();
-
-
-
-    async function handleWebsiteSubmit(e){
-      e.preventDefault();
-      const form = e.currentTarget;
-      const title = form.elements.title.value.trim();
-      const description = form.elements.description.value.trim();
-      const url = form.elements.url.value.trim();
-      const file = form.elements.file.files[0];
-      const imageUrl = form.elements.imageUrl.value.trim();
-      let image = '';
-      if(file){ image = await fileToDataUrl(file); }
-      else if(imageUrl){ image = safeLink(imageUrl); }
-      if(!title || !description || !url){
-        showToast('يرجى إضافة عنوان ووصف ورابط الموقع.');
-        return;
-      }
-      if(!state.websites) state.websites = [];
-      state.websites.unshift({ title, description, url: safeLink(url), image });
-      form.reset();
-      renderAll();
-      switchPortfolioTab('websites');
-      showToast('تمت إضافة الموقع بنجاح.');
-    }
-
-    function removeWebsite(index){
-      state.websites.splice(index, 1);
-      renderAll();
-      showToast('تم حذف الموقع.');
-    }
 
