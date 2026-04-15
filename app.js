@@ -261,7 +261,7 @@ function loadState() {
   try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return cloneData(defaultData); const parsed = JSON.parse(raw); return { profile: { ...defaultData.profile, ...parsed.profile }, portfolio: Array.isArray(parsed.portfolio) ? parsed.portfolio : cloneData(defaultData.portfolio) }; } catch { return cloneData(defaultData); }
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-function openAdmin() { els.adminPanel.classList.add("open"); els.adminPanel.setAttribute("aria-hidden", "false"); document.body.classList.add("no-scroll"); }
+function openAdmin() { if (isSharedView) return; els.adminPanel.classList.add("open"); els.adminPanel.setAttribute("aria-hidden", "false"); document.body.classList.add("no-scroll"); }
 function closeAdmin() { els.adminPanel.classList.remove("open"); els.adminPanel.setAttribute("aria-hidden", "true"); document.body.classList.remove("no-scroll"); }
 function personalInfoMarkup(profile) { const rows = [["الاسم الكامل", profile.fullName],["العمر", profile.age],["تاريخ الميلاد", profile.birthDate],["المدينة", profile.city],["المسمى المهني", profile.jobTitle],["سنوات الخبرة", profile.experience]]; return rows.map(([label, value]) => `<div><dt>${label}</dt><dd>${value || "-"}</dd></div>`).join(""); }
 function t(key) { return (translations[currentLang] && translations[currentLang][key]) || translations.ar[key] || key; }
