@@ -1,14 +1,14 @@
 const firebaseSettings = {
-  enabled: false,
+  enabled: true,
   shareCollection: "portfolioShares",
   storageFolder: "portfolio-assets",
   config: {
-    apiKey: "ضع-apiKey-هنا",
-    authDomain: "your-project-id.firebaseapp.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project-id.firebasestorage.app",
-    messagingSenderId: "1234567890",
-    appId: "1:1234567890:web:abcdef1234567890"
+    apiKey: "AIzaSyDJ0HBARgnIXI39IT0rCCIKg_MjL7n87b0",
+    authDomain: "gen-lang-client-0530088745.firebaseapp.com",
+    projectId: "gen-lang-client-0530088745",
+    storageBucket: "gen-lang-client-0530088745.appspot.com",
+    messagingSenderId: "841573260646",
+    appId: "1:841573260646:web:5d331f0625bdd5d2743ca7"
   }
 };
 function isFirebaseConfigured() {
